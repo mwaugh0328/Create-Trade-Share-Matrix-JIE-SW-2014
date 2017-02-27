@@ -7,11 +7,17 @@
 %
 % We obtain trade flows for year 2004 at the SITC-4-digit level for each
 % country-pair in the dataset from an update to Feenstra et al. (2005) using UN Comtrade data.
+% 
+% Data can be downloaded here...
+% http://cid.econ.ucdavis.edu/Html/WTF_bilateral.html
 %
 % We then converted the trade flows to ISIC codes and aggregated to only the
-% manufacturing sector. The matrix trademat_manuf, stored in manuf.mat is
-% the end result. This stores aggregate trade flows in the following way,
-% each column is an importer, a row is an exporter.
+% manufacturing sector. This is all performed in the stata file
+% adjust_trade.do which is called from this matlab file...
+%
+% The file construct_tradematrix.m create an aggregate,
+% bilateral trade flow matrix. The codes to work from are given by those 
+% input_isic file...
 %
 % The file ``impute_output_data.m'' then constructs an imputation of gross
 % output for the countries we did not have data for. The details are inthat
@@ -31,14 +37,28 @@
 
 clear
 
-load manuf
+% This calls the sata .do file which reads in the trade flow data, then
+% adjusts it per the description above... this takes some time...
+
+dos('"C:\Program Files (x86)\Stata14\StataSE-64" do adjust_trade.do')
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Now aggregate accross codes and construct a N by N martix of bilateral
+% trade flows...
+input_wtf = load('wtf_04mat.txt', '-ascii');
+input_isic = load('isic_3digit_manuf.txt', '-ascii');
+
+% Now these then aggregates accross industry codes to create an aggregate,
+% bilateral trade flow matrix. The codes to work from are given by those 
+% input_isic file...
+
+trademat = construct_tradematrix(input_wtf, input_isic);
 
 total_output= impute_output_data(1);
 
-[new_trade_mat, new_output] = aggregate_drop(trademat_manuf, total_output);
+[new_trade_mat, new_output] = aggregate_drop(trademat, total_output);
 
 tradeshare = construct_tradeshare(new_trade_mat, new_output);
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
