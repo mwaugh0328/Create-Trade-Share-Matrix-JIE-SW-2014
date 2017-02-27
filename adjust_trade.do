@@ -9,7 +9,15 @@
 *********************************************************************************************************
 clear all
 
-use "C:\Users\mwaugh.NYC-STERN\Dropbox\Github Code\Construct Trade Matrix JIE SW (2014)\Complete\wtf_2004.dta"
+*use "C:\Users\mwaugh.NYC-STERN\Dropbox\Github Code\Construct Trade Matrix JIE SW (2014)\Complete\wtf_2004.dta"
+*cd "C:\Users\mwaugh.NYC-STERN\Dropbox\Github Code\Construct Trade Matrix JIE SW (2014)\Complete"
+
+cd "C:\Users\mwaugh\Dropbox\Github Code\Construct Trade Matrix JIE SW (2014)\Complete"
+copy "https://www.dropbox.com/s/nia7peqb6rx9odm/wtf_2004_data.zip?dl=1" "wtf_2004_data.zip"
+
+unzipfile wtf_2004_data.zip
+
+use wtf_2004.dta
 
 * Note that the world trade flows bilateral data set can be downloaded here:
 * http://cid.econ.ucdavis.edu/Html/WTF_bilateral.html
@@ -46,11 +54,11 @@ drop desc trade_flow unit
 * These files inorder, put in a new code number for each importing country, each exporting country  */
 * Then convert the sitc code numbers into isic code numbers, speaperate do files achive this */
 
-run "C:\Users\mwaugh.NYC-STERN\Dropbox\Github Code\Construct Trade Matrix JIE SW (2014)\Complete\gen_imp_code.do"
+run "gen_imp_code.do"
 
-run "C:\Users\mwaugh.NYC-STERN\Dropbox\Github Code\Construct Trade Matrix JIE SW (2014)\Complete\gen_exp_code.do"
+run "gen_exp_code.do"
 
-run "C:\Users\mwaugh.NYC-STERN\Dropbox\Github Code\Construct Trade Matrix JIE SW (2014)\Complete\gen_isic_code.do"
+run "gen_isic_code.do"
 
 *********************************************************************************************************
 * Just some stuff to clean up  
@@ -63,7 +71,7 @@ replace isic = 9999 if missing(isic)
 
 /* This produces the outfile on my computer */
 
-outfile isic value iecode neccode niccode using "C:\Users\mwaugh.NYC-STERN\Dropbox\Github Code\Construct Trade Matrix JIE SW (2014)\Complete\wtf_04mat.txt", replace noquote comma wide
+outfile isic value iecode neccode niccode using "wtf_04mat.txt", replace noquote comma wide
 
 clear
 
