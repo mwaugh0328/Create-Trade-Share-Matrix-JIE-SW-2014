@@ -33,17 +33,21 @@ new_gross_output(27) =  total_gross_output(27) + total_gross_output(54) + total_
 
 % The old ones plus the new ones droped...
 
-% load not_top_50.mat
-% load not_top_30.mat
-% load not_top_10.mat
-
 drop = [20,54,73,75,76,78,82,87,92,109,134];
 drop = [drop];
-
 
 new_trade_mat(drop,:) = [];
 new_trade_mat(:,drop) = [];
 
 new_gross_output(drop) = [];
+
+% In this case...take only the top 30 countries...
+
+load not_top_30.mat
+
+new_trade_mat(~top_30,:) = [];
+new_trade_mat(:,~top_30) = [];
+
+new_gross_output(~top_30) = [];
 
 
