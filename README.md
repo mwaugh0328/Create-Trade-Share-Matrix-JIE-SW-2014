@@ -1,4 +1,4 @@
-# Create-Trade-Share-Matrix-JIE-SW--2014-
+# Create-Trade-Share-Matrix-JIE-SW-2014
 Code to Create the Trade Share matrix used in:
 
 [1] [**The Elasticity of Trade: Estimates and Evidence**](http://www.waugheconomics.com/uploads/2/2/5/6/22563786/estimate_theta_paper.pdf), with Ina Simonovska.<br>
