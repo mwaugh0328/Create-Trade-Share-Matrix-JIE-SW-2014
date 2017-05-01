@@ -1,12 +1,12 @@
 # Create-Trade-Share-Matrix-JIE-SW--2014-
 Code to Create the Trade Share matrix used in:
 
-[1] The Elasticity of Trade: Estimates and Evidence, with Ina Simonovska.
+[1] [**The Elasticity of Trade: Estimates and Evidence**](http://www.waugheconomics.com/uploads/2/2/5/6/22563786/estimate_theta_paper.pdf), with Ina Simonovska.<br>
 Journal of International Economics, 92(1): 34-50. January 2014.
 2015 Winner of The Bhagwati Award (selected by the JIE Editorial Board as the best article published in the
 JIE during 2013 and 2014).
 
-[2] Trade models, trade elasticities, and the gains from trade, with Ina Simonovska.
+[2] [**Trade models, trade elasticities, and the gains from trade**](http://www.waugheconomics.com/uploads/2/2/5/6/22563786/trade_elasticities.pdf), with Ina Simonovska.<br>
 No. w20495. National Bureau of Economic Research, 2014.
 
 The main driver file is make_tradeshare.m 
