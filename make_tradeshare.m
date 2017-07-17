@@ -40,7 +40,7 @@ clear
 % This calls the sata .do file which reads in the trade flow data, then
 % adjusts it per the description above... this takes some time...
 
-dos('"C:\Program Files (x86)\Stata14\StataSE-64" do adjust_trade.do')
+dos('"C:\Program Files (x86)\Stata13\StataSE-64" do adjust_trade.do')
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Now aggregate accross codes and construct a N by N martix of bilateral
@@ -61,4 +61,22 @@ total_output= impute_output_data(1);
 tradeshare = construct_tradeshare(new_trade_mat, new_output);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+dos('"C:\Program Files (x86)\Stata13\StataSE-64" do adjust_gravity_var.do')
+
+dist_mat = load('dist_mat.txt', '-ascii');
+
+load not_top_30.mat
+
+[d_mat, b_mat, e_code, i_code] = construct_gravity_var(dist_mat, top_30);
+% This constructs the gravity variables
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Then this will be setup to run gravity regressions on...
+home_share = diag(tradeshare);
+grav_trade = tradeshare./repmat(home_share',30,1);
+
+grav_data_set = [i_code(:), e_code(:), grav_trade(:), d_mat(:)/1.6, b_mat(:)];
+
+csvwrite('grav_data.csv',grav_data_set);
