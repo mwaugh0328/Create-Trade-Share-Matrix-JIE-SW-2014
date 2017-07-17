@@ -23,6 +23,8 @@ The file impute_output_data.m then constructs an imputation of gross output for 
  
 Then the file aggregate_drop.m makes some adjustments (either dropping or aggregating (e.g. China and Hong Kong) countries). This is also setup to take different cuts, e.g. only the top 30 countries.
  
-Finally the file construct_tradeshare.m constructs the trade share matrix. Again this is organized so that each column is an importer, a row is an exporter. The sum down a column should (and does) equall one.
+The file construct_tradeshare.m constructs the trade share matrix. Again this is organized so that each column is an importer, a row is an exporter. The sum down a column should (and does) equall one.
 
 The file output_data.xlsx has the country names, identifiers, and the output data used. 
+
+Finallly, the file creates gravity variables and then outputs a data set that is usable in my companion code repository on [**Gravity Estiomation**](https://github.com/mwaugh0328/Gravity-Estimation)<br>
