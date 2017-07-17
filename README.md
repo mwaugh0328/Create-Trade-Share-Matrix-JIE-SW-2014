@@ -27,5 +27,5 @@ The file construct_tradeshare.m constructs the trade share matrix. Again this is
 
 The file output_data.xlsx has the country names, identifiers, and the output data used. 
 
-Finallly, the file creates gravity variables and then outputs a data set that is usable in my companion code repository on [**Gravity Estimation**](https://github.com/mwaugh0328/Gravity-Estimation) It reads in the set of distance, border from the file dist_cepii.dta and then after adjustment the gravity data set is a N^2 by 5 (where N is the number of countries) in the following order, importer code, exporter code, normalized bilateral trade share, bilateral distance, and a contignuity dummy.
+Finallly, the file creates gravity variables and then outputs a data set that is usable in my companion code repository on [**Gravity Estimation**](https://github.com/mwaugh0328/Gravity-Estimation). It reads in the set of distance, border from the file dist_cepii.dta and then after adjustment the gravity data set is a N^2 by 5 (where N is the number of countries) in the following order, importer code, exporter code, normalized bilateral trade share, bilateral distance, and a contignuity dummy.
 
